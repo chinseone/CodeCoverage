@@ -21,6 +21,13 @@ jobs:
         run: dotnet restore ./CodeConverage.sln
       - name: Build
         run: dotnet build ./CodeConverage.sln --configuration Release --no-restore
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+          with:
+            file: ./coverage.xml # optional
+            flags: unittests # optional
+            name: codecov-test # optional
+            fail_ci_if_error: true # optional (default = false)
       - name: Test
         run: dotnet test ./CodeConverage.sln --no-restore --verbosity normal
 
